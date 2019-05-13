@@ -2,7 +2,9 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>Azure-Storage-SDK-V10-Java</groupId>
   <artifactId>QuickStart</artifactId>
+  <packaging>jar</packaging>
   <version>0.1</version>
+  <name>Quickstart</name>
   <repositories>
     <repository>
       <id>commicrosoftazure-2334</id>
@@ -12,6 +14,7 @@
   </repositories>
 
   <build>
+    <finalName>Quickstart</finalName>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -35,6 +38,49 @@
         </configuration>
       </plugin>
       
+<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>install</id>
+						<phase>install</phase>
+						<goals>
+							<goal>sources</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+            <archive>
+                <manifest>
+                    <mainClass>quickstart.Quickstart</mainClass>
+                </manifest>
+            </archive>
+        </configuration>
+      </plugin>
+
     </plugins>
   </build>
 
@@ -44,5 +90,31 @@
       <artifactId>azure-storage-blob</artifactId>
       <version>11.0.0</version>
     </dependency>
+    <dependency>
+			<groupId>com.microsoft.azure</groupId>
+			<artifactId>adal4j</artifactId>
+			<version>1.6.0</version>
+		</dependency>
+    		<dependency>
+			<groupId>com.nimbusds</groupId>
+			<artifactId>oauth2-oidc-sdk</artifactId>
+			<version>5.24.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20090211</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.5</version>
+		</dependency>
   </dependencies>
 </project>
